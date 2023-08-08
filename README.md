@@ -14,7 +14,7 @@ The IAM role should have the following permissions:
     permission json
     placeholder
 
-Before moving on, define your access key in the code edittor with the command 
+Before moving on, go to AWS Secrets Manager and display the IAM user access key details you saved before. Define your access key on the local machine with the command 'aws configure' 
 
 ### Initial setup with Terraform
 First, in order to assume the role with the permissions to build our infrastructure, and to establish our Terraform backend on AWS and not on our local machine, in the directory named *terraform-config* open the file named *terraform.tf* and make sure the following blocks are commented out:
