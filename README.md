@@ -6,8 +6,11 @@ Before starting you'll need to have the following AWS prerequisites:
 - AN AWS account (don't user your root user!)
 - AWS CLI installed on your local machine
 - An AWS IAM user without access to the console and with an access key that can be used with AWS CLI.
-- Save the user access key in AWS secrets manager for future access
-- An IAM role that the IAM user can assume, and has the following permissions:
+- Save the user access key in AWS secrets manager for future access, you'll need it soon to authenticate Terraform before assuming the role.
+- An IAM role that the IAM user can assume. You will need the role arn string soon when you'll build the infrastructure with Terraform
+
+The IAM role should have the following permissions:
+
     permission json
     placeholder
 
