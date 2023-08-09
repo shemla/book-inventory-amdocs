@@ -10,6 +10,9 @@ terraform {
     region         = "us-east-1"
     dynamodb_table = "devops-state-locking-table"
     encrypt        = true
+    role_arn       = "arn:aws:iam::255652631076:role/infra-as-code-role"
+    access_key     = ""
+    secret_key     = ""
   }
 
   required_providers {
@@ -23,9 +26,13 @@ terraform {
 provider "aws" {
   region = "us-east-1"
   assume_role {
-    role_arn = "arn:aws:iam::255652631076:role/infra-as-code-role"
+    role_arn     = "arn:aws:iam::255652631076:role/infra-as-code-role"
     session_name = "terraform_session"
 
   }
+}
+
+module "components" {
+  source = "./components"
 }
 
