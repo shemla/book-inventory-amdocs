@@ -141,7 +141,7 @@ Now the file should look like that:
 
  
 ##### 8. Run the command `terraform init -migrate-state`
-- Delete the files *terraform.tfstate*, *terraform.tfstate.backup* and *./.terraform/terraform.tfstate* from your repository to prevent it from being a security volnurability
+- Delete the files *terraform.tfstate* and *terraform.tfstate.backup* from your repository to prevent it from being a security volnurability
 - Run the command `terraform apply`
 
 
