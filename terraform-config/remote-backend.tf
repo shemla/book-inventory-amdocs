@@ -1,6 +1,11 @@
 # Enable remote backend for Terraform using AWS S3 and DynamoDB
-# based on https://github.com/sidpalas/devops-directive-terraform-course/blob/main/03-basics/aws-backend/main.tf
-# based on https://www.youtube.com/watch?v=7xngnjfIlK4
+# References: 
+# https://github.com/sidpalas/devops-directive-terraform-course/blob/main/03-basics/aws-backend/main.tf
+# https://www.youtube.com/watch?v=7xngnjfIlK4
+# https://earthly.dev/blog/terraform-state-bucket/
+#
+# ToDo:
+# https://technology.doximity.com/articles/terraform-s3-backend-best-practices
 
 resource "aws_s3_bucket" "terraform_state" {
   bucket        = var.devops_s3_name # BUCKET NAME
