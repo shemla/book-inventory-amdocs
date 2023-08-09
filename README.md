@@ -17,12 +17,9 @@ Please note: our AWS details are as follows, but you'll need to replace them wit
 - AWS region: `us-east-1`
 - domain: `bookteam.net`
 
-##### 2. Create a new policy with these permissions, and attach it to the IAM role:
+##### 2. Attach the managed policy *PowerUserAccess* to the IAM role
 
-    permission json
-    placeholder
-
-And the following trust policy:
+And also the following trust policy:
 
     {
         "Version": "2012-10-17",
