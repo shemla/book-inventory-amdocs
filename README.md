@@ -1,5 +1,5 @@
 # Book Inventory Management System (Amdocs interview)
-This is a repository to assess an intermediate developer skill with AWS and Terraform by developing the backend for a serverless book inventory management system
+This is a repository to assess an intermediate developer skill with AWS and Terraform by developing the backend for a serverless book inventory management system. Before starting this step-by-step guidance, clone this repositiry to your local machine.
 
 ### Initial AWS prerequisites
 ##### 1. Before starting you'll need to have the following AWS prerequisites:
@@ -141,7 +141,7 @@ Now the file should look like that:
 
  
 ##### 8. Run the command `terraform init -migrate-state`
-- Delete the files *terraform.tfstate*, *terraform.tfstate.backup* and *./.terraform/terraform.tfstate* from your repository to prevent it from being a security volnurability
+- Delete the files *terraform.tfstate* and *terraform.tfstate.backup* from your repository to prevent it from being a security volnurability
 - Run the command `terraform apply`
 
 
