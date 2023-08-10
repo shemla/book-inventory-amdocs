@@ -61,7 +61,6 @@ module "api_gateway" {
       authorizer_type  = "JWT"
       identity_sources = "$request.header.Authorization"
       name             = "cognito"
-      audience         = ["d6a38afd-45d6-4874-d1aa-3c5c558aqcc2"]
       issuer           = "https://${aws_cognito_user_pool.this.endpoint}"
     }
   }
