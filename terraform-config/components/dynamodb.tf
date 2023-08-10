@@ -1,3 +1,4 @@
+# In this file:
 # tables
 # schema
 # appsync
