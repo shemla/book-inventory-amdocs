@@ -61,8 +61,38 @@ module "api_gateway" {
       authorizer_type  = "JWT"
       identity_sources = "$request.header.Authorization"
       name             = "cognito"
-      issuer           = "https://${aws_cognito_user_pool.this.endpoint}"
+      issuer           = "https://${module.aws_cognito_user_pool_complete.endpoint}"
     }
   }
 
+}
+
+# ALB
+module "alb" {
+    source  = "terraform-aws-modules/alb/aws"
+  version = "~> 8.0"
+
+  name = "my-alb"
+
+  load_balancer_type = "application"
+  domain_name = "bookteam.net"
+  
+  https_listeners = [
+    {
+      port               = 443
+      protocol           = "HTTPS"
+      certificate_arn    = module.acm.acm_certificate_arn
+      target_group_index = 0
+    }
+  ]
+  
+  http_tcp_listeners = [
+    {
+      port               = 80
+      protocol           = "HTTP"
+      target_group_index = 0
+    }
+  ]
+
+  
 }
