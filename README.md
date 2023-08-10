@@ -8,18 +8,18 @@ This is a repository to assess an intermediate developer skill with AWS and Terr
 - An AWS IAM user without access to the console and with an access key that can be used with AWS CLI.
 - Save the user access key in AWS secrets manager for future access, you'll need it soon to authenticate Terraform before assuming the role.
 - An IAM role that the IAM user can assume. You will need the role arn string soon when you'll build the infrastructure with Terraform
+- You'll need a domain address. If you don't already have a domain, you can create one in the AWS console. Go to *Route53* click on *Register a domain* and follow the instructions.
+- Then, in *Route53* create a hosted zone by going to *Hosted zones*, clicking on *Create hosted zone* and following their instructions.
 
 Please note: our AWS details are as follows, but you'll need to replace them with your respective details:
 - IAM user arn: `arn:aws:iam::255652631076:user/oriashemla-cli-user`
 - IAM role arn: `arn:aws:iam::255652631076:role/infra-as-code-role`
 - AWS region: `us-east-1`
+- domain: `bookteam.net`
 
-##### 2. Create a new policy with these permissions, and attach it to the IAM role:
+##### 2. Attach the managed policy *PowerUserAccess* to the IAM role
 
-    permission json
-    placeholder
-
-And the following trust policy:
+And also the following trust policy:
 
     {
         "Version": "2012-10-17",
