@@ -143,10 +143,12 @@ Now the file should look like that:
 ##### 8. Run the command `terraform init -migrate-state`
 - Delete the files *terraform.tfstate* and *terraform.tfstate.backup* from your repository to prevent it from being a security volnurability
 - Run the command `terraform apply`
+- If your ACM instance validation takes more than a few minutes, you need to validate your domain name. Follow the instructions here:
+  https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html#setting-up-dns-validation
 
 
 
-
- That's it! your new AWS infrastructure is all set!
+ That's it! your new AWS infrastructure is all set! 
+ Now check your email, you'll have the password for the sysadmin cognito user that you can use to login
 
 
