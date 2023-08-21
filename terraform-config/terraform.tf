@@ -24,18 +24,20 @@ terraform {
   required_version = ">= 1.5.4"
 }
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
   # skip_requesting_account_id should be disabled to generate valid ARN in apigatewayv2_api_execution_arn
   skip_requesting_account_id = false
 
   assume_role {
-    role_arn     = "arn:aws:iam::255652631076:role/infra-as-code-role"
+    role_arn     = var.role_arn
     session_name = "terraform_session"
 
   }
 }
 
 module "components" {
-  source = "./components"
+  source     = "./components"
+  aws_region = var.aws_region
+  env        = var.env_name
 }
 

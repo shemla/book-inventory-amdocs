@@ -38,23 +38,37 @@ module "api_gateway" {
   domain_name_certificate_arn = module.acm.acm_certificate_arn
 
   # Routes and integrations
-  #integrations = {
-  #  "GET /" = {
-  #    lambda_arn             = "arn:aws:lambda:eu-west-1:052235179155:function:my-function"
-  #    payload_format_version = "2.0"
-  #    timeout_milliseconds   = 12000
-  #  }
-  #
-  #  "POST /book-image" = {
-  #    integration_type = "HTTP_PROXY"
-  #    integration_uri  = "some url"
-  #    authorizer_key   = "cognito"
-  #  }
-  #
-  #  "$default" = {
-  #    lambda_arn = "arn:aws:lambda:eu-west-1:052235179155:function:my-default-function"
-  #  }
-  #}
+  integrations = {
+    "ANY /" = {
+      lambda_arn             = module.restful_handler_lambda.lambda_function_arn
+      payload_format_version = "2.0"
+      timeout_milliseconds   = 20000
+      authorizer_key         = "cognito"
+    }
+    
+    "GET /search" = {
+      lambda_arn             = module.db_search_lambda.lambda_function_arn
+      payload_format_version = "2.0"
+      timeout_milliseconds   = 20000
+      authorizer_key         = "cognito"
+    }
+    
+    "POST /files" = {
+      integration_type = "HTTP_PROXY"
+      integration_uri  = module.s3_bucket_temp_files.s3_bucket_arn
+      authorizer_key   = "cognito"
+    }
+    
+    "GET /files" = {
+      integration_type = "HTTP_PROXY"
+      integration_uri  = module.s3_bucket_files.s3_bucket_arn
+      authorizer_key   = "cognito"
+    }
+
+    "$default" = {
+      lambda_arn = module.error_lambda.lambda_function_arn
+    }
+  }
 
   authorizers = {
     "cognito" = {
@@ -66,33 +80,37 @@ module "api_gateway" {
   }
 
 }
-
+# TODO: Define then load balancer to target the API Gateway
 # ALB
-module "alb" {
-    source  = "terraform-aws-modules/alb/aws"
-  version = "~> 8.0"
-
-  name = "my-alb"
-
-  load_balancer_type = "application"
-  domain_name = "bookteam.net"
-  
-  https_listeners = [
-    {
-      port               = 443
-      protocol           = "HTTPS"
-      certificate_arn    = module.acm.acm_certificate_arn
-      target_group_index = 0
-    }
-  ]
-  
-  http_tcp_listeners = [
-    {
-      port               = 80
-      protocol           = "HTTP"
-      target_group_index = 0
-    }
-  ]
-
-  
-}
+#module "alb" {
+#    source  = "terraform-aws-modules/alb/aws"
+#  version = "~> 8.0"
+#
+#  name = "restful_alb"
+#
+#  load_balancer_type = "application"
+#  #domain_name = "bookteam.net"
+#  
+#  #todo: add vpc details
+#
+#  https_listeners = [
+#    {
+#      port               = 443
+#      protocol           = "HTTPS"
+#      certificate_arn    = module.acm.acm_certificate_arn
+#      target_group_index = 0
+#    }
+#  ]
+#  
+#  target_groups = [{
+#    name_prefix                        = "l1-"
+#    target_type                        = "lambda"
+#    lambda_multi_value_headers_enabled = true
+#    targets = {
+#        restful_handler_lambda = {
+#            target_id = module.restful_handler_lambda.lambda_function_arn
+#        }
+#    }
+#  }]
+#}
+#

@@ -1,0 +1,8 @@
+{
+    "name":"crud_author_lambda",
+    "main":"index.js",
+    "version":"0.0.1",
+    "dependencies": {
+        
+    }
+}

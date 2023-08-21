@@ -1,0 +1,8 @@
+{
+    "name":"db_search_lambda",
+    "main":"index.js",
+    "version":"0.0.1",
+    "dependencies": {
+        
+    }
+}

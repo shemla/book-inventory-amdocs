@@ -1,0 +1,8 @@
+{
+    "name":"read_book_lambda",
+    "main":"index.js",
+    "version":"0.0.1",
+    "dependencies": {
+        
+    }
+}

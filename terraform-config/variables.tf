@@ -2,7 +2,20 @@ variable "aws_region" {
   description = "Name of the AWS region to build the infrastructure in"
   type        = string
   default     = "us-east-1"
+  nullable    = false
 }
+
+variable "env_name" {
+  description = "environment name (dev/staging/prod)"
+  type        = string
+  default     = "dev"
+  nullable    = false
+  validation {
+    condition     = var.env_name == "dev" || var.env_name == "staging" || var.env_name == "prod"
+    error_message = "Please select a valid environment name (dev/staging/prod)"
+  }
+}
+
 
 variable "role_arn" {
   description = "arn of the IAM role to be assumed by Terraform in order to build the infrastructure"
